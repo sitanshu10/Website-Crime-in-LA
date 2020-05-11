@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <style>
+      body {
+        background-color: lightblue;
+        padding-top: 20%;
+        /* padding: 30px 500px 500px 500px;  */
+      }
+      .form-radio,
+      .myinput[type="checkbox"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        display: inline-block;
+        position: relative;
+        background-color: #f1f1f1;
+        color: #666;
+        top: 10px;
+        height: 30px;
+        width: 30px;
+        border: 0;
+        /* / border-radius: 50px; */
+        cursor: pointer;
+        margin-right: 7px;
+        outline: none;
+      }
+
+      .form-radio {
+        border-radius: 50px;
+      }
+      .form-radio:checked::before,
+      .myinput[type="checkbox"]:checked::before {
+        position: absolute;
+        font: 13px/1 "Open Sans", sans-serif;
+        left: 11px;
+        top: 7px;
+        content: "\02143";
+        transform: rotate(40deg);
+      }
+      .form-radio:hover,
+      .myinput[type="checkbox"]:hover {
+        background-color: #f7f7f7;
+      }
+      .form-radio:checked,
+      .myinput[type="checkbox"]:checked {
+        background-color: #f1f1f1;
+      }
+    </style>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 20px; margin-left: -2px; margin-right: -13px">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+         <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="info">Info</a>
+          <a class="nav-item nav-link" href="comparison">Comparisons</a>
+          <a class="nav-item nav-link" href="ranking">Mapping</a>
+          <a class="nav-item nav-link active" href="trends">Trends</a>
+          <a class="nav-item nav-link" href="ViewReport">Reports</a>
+        </div>
+      </div>
+    </nav>
+
+  </head>
+  <body>
+    <!-- Header -->
+    <!-- <header id="header">
+      <a class="logo" href="/">Home</a>
+      <nav>
+        <a href="#menu">Menu</a>
+      </nav>
+    </header> -->
+
+    <!-- Nav -->
+    <!-- <nav id="menu">
+      <ul class="links">
+        <li><a href="ViewReport">Reports</a></li>
+        <li><a href="comparison">Comparison</a></li>
+        <li><a href="trends">Trends</a></li>
+        <li><a href="ranking">Ranking</a></li>
+        <li><a href="info">Database Information</a></li>
+      </ul>
+    </nav> -->
+    <h1 style="padding-left:40%;padding-top: 2%;">TRENDS PAGE</h1>
+    <form action="/trends" method="post" style="padding-left:3%">
+      <% {%>
+      <div style="float:left;width:60%;margin-left:8%">
+        <h3>Select Area:</h3>
+        <div style="float:left;width:30%;">
+          Select Area: <br />
+          <select name="area">
+              <option value="77th Street"> 77th Street </option>
+              <option value="Central"> Central </option>
+              <option value="Devonshire"> Devonshire </option>
+              <option value="Foothill"> Foothill </option>
+              <option value="Harbor"> Harbor </option>
+              <option value="Hollenbeck"> Hollenbeck </option>
+              <option value="Hollywood"> Hollywood </option>
+              <option value="Mission"> Misssion </option>
+              <option value="N Hollywood"> N Hollywood </option>
+              <option value="Newton"> Newton </option>
+              <option value="Northeast"> Northeast </option>
+              <option value="Olympic"> Olympic </option>
+              <option value="Pacific"> Pacific </option>
+              <option value="Rampart"> Rampart </option>
+              <option value="Southeast"> Southeast </option>
+              <option value="Southwest"> Southwest </option>
+              <option value="Topanga"> Topanga </option>
+              <option value="Van Nuys"> Van Nuys </option>
+              <option value="West LA"> West LA </option>
+              <option value="West Valley"> West Valley </option>
+              <option value="Wilshire"> Wilshire </option>
+            </select>
+        </div>
+      </div>
+      <div style="float:right;width:20%;margin-right:10%">
+        <h3>Select Crime:</h3>
+        Select Crime: <br />
+        <select name="crime">
+            <option value="THEFT"> THEFT </option>
+            <option value="RAPE"> RAPE </option>
+            <option value="ASSAULT"> ASSAULT </option>
+            <option value="FIREARM"> FIREARM </option>
+            <option value="VANDALISM"> VANDALISM </option>
+            <option value="BURGLARY"> BURGLARY </option>
+            <option value="DRIVING"> DRIVING </option>
+          </select>
+      </div>
+      <div style="padding-top:15%;padding-left:43%;">
+        <input type="submit" value="Submit" />
+      </div>
+
+      <% } %>
+    </form>
+
+    <% if(one!=""){%>
+    <br /><br />
+    <div class="chart">
+      <canvas id="chart-demo-1" width="300" height="100"></canvas>
+    </div>
+    <% {%>
+    <script>
+
+       var ctx = document.getElementById('chart-demo-1').getContext('2d');
+
+        var chart = new Chart(ctx, {
+
+          type: 'bar',
+
+          data: {
+
+            labels: ['Childern(0-18)', 'Youth(19-25)', 'Young Adults(26-34)', 'Middle Aged Adults(35-54)', 'Old Adults(55-64)', 'Senior Citizen(65+)'],
+            datasets: [
+                {
+                label: "Male",
+                borderColor: '#ff003f',
+                backgroundColor: "#000000",
+                data: [<%=one%>]
+
+              },
+              {
+                label: "Female",
+                borderColor: '#c300ff',
+                backgroundColor: "#70AAE4",
+                data: [<%=two%>]
+
+              }]
+          },
+          options:{
+            layout:{
+              padding:10,
+            },
+            legend:{
+              position:'bottom',
+            },
+            title:{
+              display:true,
+              text:['This graph displays the average number of days taken to report a crime','Area: <%=area%>, Type of Crime: <%=crime%>'],
+              fontSize: 20
+            },
+            scales:{
+
+              xAxes:[{
+                scaleLabel:{
+                  dispaly:true,
+                  labelString:'Year'
+                }
+              }],
+              yAxes:[{
+                scaleLabel:{
+                  dispaly:true,
+                  labelString:'Count'
+                }
+              }]
+            }
+          }
+        });
+    </script>
+    <% } %>
+
+    <!-- <h2>Selected areas are:<%=area%></h2>
+
+    <h2>Selected crime is:<%=crime%></h2> -->
+    <%}%>
+
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
+  </body>
+</html>

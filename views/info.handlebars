@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8" />
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" /> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 20px; margin-left: -2px; margin-right: -13px">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+         <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link active" href="info">Info</a>
+          <a class="nav-item nav-link" href="comparison">Comparisons</a>
+          <a class="nav-item nav-link" href="ranking">Mapping</a>
+          <a class="nav-item nav-link" href="trends">Trends</a>
+          <a class="nav-item nav-link" href="ViewReport">Reports</a>
+        </div>
+      </div>
+    </nav>
+</head>
+
+<body>
+    <br>
+
+
+    <div style="background-color: #ffffff; border-radius: 20px" class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3><u>About Database</u></h3>
+                <p>
+                    <b><i> This dataset reflects incidents of crime in the City of Los Angeles dating back to 2010. The
+                            link to the dataset is  <a
+                                href="https://www.kaggle.com/cityofLA/crime-in-los-angeles"
+                                target = "_blank"
+                                style="color: darkblue">Crime in LA</a>
+                            There are 10 tables in total. To check the number of tuples present in each table, click the buttons below. </i></b>
+                </p>
+            </div>
+        </div>
+
+
+
+       <div  style = "padding-left: 15%">
+        <div class="col-md-2">
+            <a href="/info?id=Dummy"><input type="button" value="Crime_Data" class="btn btn-dark btn-lg" style="width: 150px;color:black"></a>
+            {{#if Dummy}}
+            <br><br>
+            &nbsp
+            &nbsp
+            &nbsp<b>{{Dummy}}</b>
+            {{/if}}
+        </div>
+        <br><br>
+        <div class="col-md-2">
+            <a href="/info?id=Dates"><input type="button" value="Dates" class="btn btn-dark btn-lg" style="width: 120px"></a>
+            {{#if Dates}}
+            <br><br>
+            &nbsp
+            &nbsp
+            &nbsp<b>{{Dates}}</b>
+            {{/if}}
+        </div>
+        <br><br>
+        <div class="col-md-2">
+            <a href="/info?id=Areas"><input type="button" value="Areas" class="btn btn-dark btn-lg" style="width: 120px"></a>
+            {{#if Areas}}
+
+            <br><br>
+            &nbsp
+            &nbsp
+            &nbsp<b>{{Areas}}</b>
+
+            {{/if}}
+        </div>
+       <br><br>
+        <div class="col-md-2">
+            <a href="/info?id=Crime_Codes"><input type="button" value="Crime Codes" class="btn btn-dark btn-lg" style="width: 150px"></a>
+            {{#if Crime_Codes}}
+
+            <br><br>
+            &nbsp
+            &nbsp
+            &nbsp<b>{{Crime_Codes}}</b>
+            {{/if}}
+        </div>
+        <br><br>
+        <div class="col-md-2">
+            <a href="/info?id=MO_Codes"><input type="button" value="MO_Codes" class="btn btn-dark btn-lg" style="width: 130px"></a>
+            {{#if MO_Codes}}
+
+            <br><br>
+            &nbsp
+            &nbsp
+            &nbsp<b>{{MO_Codes}}</b>
+            {{/if}}
+        </div>
+        <br><br>
+        <div class="col-md-2">
+            <a href="/info?id=Times"><input type="button" value="Times" class="btn btn-dark btn-lg" style="width: 130px"></a>
+            {{#if Times}}
+
+            <br><br>
+            &nbsp
+            &nbsp
+            &nbsp<b>{{MO_Codes}}</b>
+            {{/if}}
+        </div>
+        </div>
+        <br><br><br>
+      <div style="float:right;width:80%;padding-left:10%;margin-top:-51%;margin-right:-30%">
+        <div class="col-md-2">
+            <a href="/info?id=Victims"><input type="button" value="Victims" class="btn btn-dark btn-lg" style="width: 120px"></a>
+            {{#if Victims}}
+
+            <br><br>
+            &nbsp
+            &nbsp
+            &nbsp<b>{{Victims}}</b>
+            {{/if}}
+        </div>
+        <br><br>
+        <div class="col-md-2">
+            <a href="/info?id=Premises"><input type="button" value="Premises" class="btn btn-dark btn-lg" style="width: 120px"></a>
+            {{#if Premises}}
+
+            <br><br>
+            &nbsp
+            &nbsp
+            &nbsp<b>{{Premises}}</b>
+            {{/if}}
+        </div>
+        <br><br>
+        <div class="col-md-2">
+            <a href="/info?id=Weapons"><input type="button" value="Weapons" class="btn btn-dark btn-lg" style="width: 120px"></a>
+            {{#if Weapons}}
+
+            <br><br>
+            &nbsp
+            &nbsp
+            &nbsp<b>{{Weapons}}</b>
+            {{/if}}
+        </div>
+       <br><br>
+        <div class="col-md-2">
+            <a href="/info?id=Statuses"><input type="button" value="Statuses" class="btn btn-dark btn-lg" style="width: 120px"></a>
+            {{#if Statuses}}
+
+            <br><br>
+            &nbsp
+            &nbsp
+            &nbsp<b>{{Statuses}}</b>
+            {{/if}}
+
+        </div>
+        <br><br>
+        <div class="col-md-2">
+            <a href="/info?id=Locations"><input type="button" value="Locations" class="btn btn-dark btn-lg" style="width: 120px"></a>
+            {{#if Locations}}
+
+            <br><br>
+            &nbsp
+            &nbsp
+            &nbsp<b>{{Locations}}</b>
+            {{/if}}
+        </div>
+
+    </div>
+
+  </div>
+
+
+</body>
+
+</html>

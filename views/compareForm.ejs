@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+        <link rel="stylesheet" href="/assets/css/main.css" />
+        <style>
+            select{
+                background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+                background-position: 97% center;
+                background-repeat: no-repeat;
+                border: 1px solid #AAA;
+                color: #555;
+                font-size: inherit;
+                margin: 20px;
+                overflow: hidden;
+                padding: 5px 10px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 300px;
+            }
+
+            body {
+                padding-top: 0%;
+                padding-left: 1%;
+                padding-right: 1%;
+            }
+            h1, h2{
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            }
+            .form-radio{
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                display: inline-block;
+                position: relative;
+                background-color: #f1f1f1;
+                color: #666;
+                top: 10px;
+                height: 30px;
+                width: 30px;
+                border: 0;
+                border-radius: 50px;
+                cursor: pointer;
+                margin-right: 7px;
+                outline: none;
+            }
+            .form-radio:checked::before
+            {
+                position: absolute;
+                font: 13px/1 'Open Sans', sans-serif;
+                left: 11px;
+                top: 7px;
+                content: '\02143';
+                transform: rotate(40deg);
+            }
+            .form-radio:hover
+            {
+                background-color: #f7f7f7;
+            }
+            .form-radio:checked
+            {
+                background-color: #f1f1f1;
+            }
+
+        </style>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 20px; margin-left: -15px; margin-right: -13px">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+             <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-item nav-link" href="info">Info</a>
+              <a class="nav-item nav-link active" href="comparison">Comparisons</a>
+              <a class="nav-item nav-link" href="ranking">Mapping</a>
+              <a class="nav-item nav-link" href="trends">Trends</a>
+              <a class="nav-item nav-link" href="ViewReport">Reports</a>
+            </div>
+          </div>
+        </nav>
+
+</head>
+<body>
+
+    <!-- Header -->
+    <!-- <header id="header">
+            <a class="logo" href="/">Home</a>
+            <nav>
+              <a href="#menu">Menu</a>
+            </nav>
+          </header> -->
+
+          <!-- Nav -->
+          <!-- <nav id="menu">
+            <ul class="links">
+              <li><a href="ViewReport">Reports</a></li>
+              <li><a href="comparison">Comparison</a></li>
+              <li><a href="trends">Trends</a></li>
+              <li><a href="ranking">Ranking</a></li>
+              <li><a href="info">Database Information</a></li>
+            </ul>
+          </nav> -->
+
+    <h1 style="padding-left:33%">Comparison Chart</h1>
+    <form action="/comparison" method="POST">
+
+     <div style="width:50%;float:left;padding-left: 8%; padding-top:3%">
+
+        Compare on: <br />
+       <div>
+            <input type="radio" class="form-radio"  name="basedon" value="time" checked="checked">Time</input><br>
+            <input type="radio" class="form-radio" name="basedon" value="area">Area</input><br>
+            <input type="radio" class="form-radio" name="basedon" value="age">Age</input><br/><br />
+        </div>
+
+        <br />
+
+        Age Groups: <br />
+
+            Start Age:
+            <input type="text" name="startage" style="width:50%" />
+            <br />
+            End Age:
+            <input type="text" name="endage" style="width:50%" />
+
+    </div>
+
+        <div style="width:50%;float:right;padding-left:10%;padding-top:3%">
+        Select Area: <br />
+        <select name="area">
+            <option value="77th Street"> 77th Street </option>
+            <option value="Central"> Central </option>
+            <option value="Devonshire"> Devonshire </option>
+            <option value="Foothill"> Foothill </option>
+            <option value="Harbor"> Harbor </option>
+            <option value="Hollenbeck"> Hollenbeck </option>
+            <option value="Hollywood"> Hollywood </option>
+            <option value="Mission"> Misssion </option>
+            <option value="N Hollywood"> N Hollywood </option>
+            <option value="Newton"> Newton </option>
+            <option value="Northeast"> Northeast </option>
+            <option value="Olympic"> Olympic </option>
+            <option value="Pacific"> Pacific </option>
+            <option value="Rampart"> Rampart </option>
+            <option value="Southeast"> Southeast </option>
+            <option value="Southwest"> Southwest </option>
+            <option value="Topanga"> Topanga </option>
+            <option value="Van Nuys"> Van Nuys </option>
+            <option value="West LA"> West LA </option>
+            <option value="West Valley"> West Valley </option>
+            <option value="Wilshire"> Wilshire </option>
+          </select>
+        <div style= "padding-top: 17.5%">
+        Timeframe: <br />
+        Start Time:
+        <input type="text" name="starttime" placeholder="hhmm" style="width:50%" />
+        <br />
+        End Time:
+        <input type="text" name="endtime" placeholder="hhmm" style="width:50%" />
+        <br />
+        <br />
+      </div>
+    </div>
+    <br />
+    <br />
+    <br />
+
+    <div style="padding-left: 40%; padding-top: 30%">
+        <input type="submit" value="Submit" />
+    </div>
+    </form>
+
+        <%if (data1.length > 0){%>
+        <div style="width:1000px; padding-left: 10%">
+
+            <div id = "viewChart" style="width:100%;float:right;">
+                    <canvas id = "compareChart"></canvas>
+            </div>
+          </div>
+          <%}%>
+
+         <script>
+
+            const canvas = document.getElementById('compareChart');
+            const ctx = canvas.getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                  labels: [2010,2011,2012,2013,2014,2015,2016,2017],
+                  datasets: [{
+                    label: "Total",
+                    data: [<%=data1%>],
+
+                  },{
+                    label: "Comparision By <%=gtype%>",
+                    data: [<%=data2%>],
+                    backgroundColor: 'navy',
+                    borderColor: "rgba(206, 27, 40,1)",
+                    borderWidth: 2,
+                    hoverBorderColor: "rgba(206, 27, 40,1)"
+                  }]
+                },
+                options: {
+                   scales:{
+                     yAxes: [{
+                       scaleLabel: {
+                         display: true,
+                         labelString:'NUMBER OF CRIMES',
+                         fontSize: 20
+                       }
+                     }],
+                     xAxes: [{
+                       scaleLabel: {
+                         display: true,
+                         labelString:'YEARS',
+                         fontSize: 20
+                       }
+                     }]
+                   },
+                   title:{
+                     display:true,
+                     text:'Age range: <%=startage2%> to <%=endage2%>, Time range: <%=starttime2%> to <%=endtime2%>, Area: <%=area2%>',
+                     fontSize: 30
+                   }
+                }
+            });
+          </script>
+
+
+
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>

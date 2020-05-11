@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!-- Header -->
+  <!-- <header id="header" style="margin: -20px;">
+      <a class="logo" href="/">Home</a>
+      <nav>
+        <a href="#menu">Menu</a>
+      </nav>
+    </header> -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin: -30px;padding-bottom:-5px">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+         <a class="nav-item nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="info">Info</a>
+          <a class="nav-item nav-link" href="comparison">Comparisons</a>
+          <a class="nav-item nav-link active" href="ranking">Mapping</a>
+          <a class="nav-item nav-link" href="trends">Trends</a>
+          <a class="nav-item nav-link" href="ViewReport">Reports</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Nav -->
+    <!-- <nav id="menu">
+      <ul class="links">
+        <li><a href="ViewReport">Reports</a></li>
+        <li><a href="comparison">Comparison</a></li>
+        <li><a href="trends">Trends</a></li>
+        <li><a href="ranking">Ranking</a></li>
+        <li><a href="info">Database Information</a></li>
+      </ul>
+    </nav> -->
+
+  <title>Mapping page</title>
+
+  <style>
+    body{
+      padding: 30px 0px 10px 20px;
+    }
+    /* #crimeRank{
+      border-collapse: collapse;
+      width: 80%;
+    }
+    input[type=submit] {
+    border: 1px solid #AAA;
+    cursor:pointer;
+    -webkit-border-radius: 50px;
+    font-size: inherit;
+    color: #555;
+    border-radius: 50px;
+    } */
+    h1, h2{
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    }
+    h3{
+      text-transform: capitalize;
+      font-family: "Trebuchet MS", sans-serif;
+    }
+    select{
+        border: 1px solid #AAA;
+        font-size: inherit;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 300px;
+    }
+    option{
+      background-color: #ce1b28;
+      width: 300px;
+    }
+    #crimeRank td, #crimeRank th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    #crimeRank tr:nth-child(even){background-color: #f2f2f2;}
+
+    #crimeRank tr:hover {background-color: #ddd;}
+
+    #crimeRank th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      text-transform: uppercase;
+      background-color: rgb(206,27,40);
+      color: white;
+    }
+
+    /* .form-radio{
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                display: inline-block;
+                position: relative;
+                background-color: #f1f1f1;
+                color: #666;
+                top: 10px;
+                height: 30px;
+                width: 30px;
+                border: 0;
+                border-radius: 50px;
+                cursor: pointer;
+                margin-right: 7px;
+                outline: none;
+            }
+            .form-radio:checked::before
+            {
+                position: absolute;
+                font: 13px/1 'Open Sans', sans-serif;
+                left: 11px;
+                top: 7px;
+                content: '\02143';
+                transform: rotate(40deg);
+            }
+            .form-radio:hover
+            {
+                background-color: #f7f7f7;
+            }
+            .form-radio:checked
+            {
+                background-color: #f1f1f1;
+            } */
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+
+</head>
+
+
+
+<body>
+  <br/>
+  <br/>
+    <div id = "tableChart" style="float:left;width:60%;">
+  <h1 style="padding-left:55%">MAPPING PAGE</h1>
+
+  <form action="/ranking" method=post>
+  <% {%>
+  </br>
+  <div style="float:left;width:60%;margin-left:15%">
+    <h3>Select Area:</h3>
+    <div style="float:left;width:30%;">
+      <select name="area">
+          <option value="77th Street"> 77th Street </option>
+          <option value="Central"> Central </option>
+          <option value="Devonshire"> Devonshire </option>
+          <option value="Foothill"> Foothill </option>
+          <option value="Harbor"> Harbor </option>
+          <option value="Hollenbeck"> Hollenbeck </option>
+          <option value="Hollywood"> Hollywood </option>
+          <option value="Mission"> Misssion </option>
+          <option value="N Hollywood"> N Hollywood </option>
+          <option value="Newton"> Newton </option>
+          <option value="Northeast"> Northeast </option>
+          <option value="Olympic"> Olympic </option>
+          <option value="Pacific"> Pacific </option>
+          <option value="Rampart"> Rampart </option>
+          <option value="Southeast"> Southeast </option>
+          <option value="Southwest"> Southwest </option>
+          <option value="Topanga"> Topanga </option>
+          <option value="Van Nuys"> Van Nuys </option>
+          <option value="West LA"> West LA </option>
+          <option value="West Valley"> West Valley </option>
+          <option value="Wilshire"> Wilshire </option>
+        </select>
+      </br>
+            <h3>Select crime:</h2>
+            <select name="crime">
+                <option value="THEFT"> THEFT </option>
+                <option value="RAPE"> RAPE </option>
+                <option value="ASSAULT"> ASSAULT </option>
+                <option value="FIREARM"> FIREARM </option>
+                <option value="VANDALISM"> VANDALISM </option>
+                <option value="BURGLARY"> BURGLARY </option>
+                <option value="DRIVING"> DRIVING </option>
+              </select>
+
+
+    </div>
+  </div>
+  <div style="float:right;width:80%;padding-left:45%;margin-top:-25%;margin-right:-30%">
+  </br>
+      Start Time:
+      <input type="text" name="starttime" placeholder="hhmm" style="width:70%" />
+      <br />
+      <br />
+      End Time:
+      <input type="text" name="endtime" placeholder="hhmm" style="width:70%" />
+  </div>
+ </br>
+  <div style = "padding-left: 15%; margin: 4%; margin-top: 30%;margin-left:50%">
+   <input type="submit" value="SUBMIT">
+ </div>
+  <% } %>
+  </form>
+</br>
+</br>
+  <% if(arr.length > 0){%>
+<div id="map" style="height: 400px; width: 100%; padding-left:50px; margin-left:23%; margin-bottom: 15%;"></div>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
+
+ <script>
+  var map;
+     function initMap() {
+       map = new google.maps.Map(document.getElementById('map'), {
+         center: {lat: <%=arr[0][0]%>, lng: <%=arr[0][1]%>},
+         zoom: 12
+       });
+       <%var len = arr.length%>;
+       <%for(var i = 0;i < len;i++){%>
+         var one = <%=arr[i][0]%>;
+         var two = <%=arr[i][1]%>;
+         var uluru = {lat: one, lng: two};
+         var marker = new google.maps.Marker({position: uluru, map: map});
+       <%}%>
+     }
+ </script>
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIlaCrkNLH5SKb4yQS5SI9zgvWYBu0rcU&callback=initMap"
+    async defer></script>
+    <%}%>
+  </body>
+
+</body>
+</html>

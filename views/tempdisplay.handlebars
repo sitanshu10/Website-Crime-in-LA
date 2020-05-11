@@ -1,0 +1,155 @@
+<head>
+<link rel = "stylesheet" href="/assets/css/main.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <title>View Report</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 20px; margin-left: -10px; margin-right: -13px">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+         <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="info">Info</a>
+          <a class="nav-item nav-link" href="comparison">Comparisons</a>
+          <a class="nav-item nav-link" href="ranking">Mapping</a>
+          <a class="nav-item nav-link" href="trends">Trends</a>
+          <a class="nav-item nav-link active" href="ViewReport">Reports</a>
+        </div>
+      </div>
+    </nav>
+
+</head>
+
+<style>
+    body {
+        padding-top: 0%;
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+
+    /* table {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr,
+    td {
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+
+    #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #customers td,
+    #customers th {
+        border: 1px solid #ddd;
+        padding: 4px;
+    }
+
+    #customers tr:nth-child(even) {
+        background-color: rgba(206, 27, 40, 0.4);
+    }
+
+    #customers tr:hover {
+        background-color: gray;
+    }
+
+    #customers thead {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-align: left;
+        background-color: rgba(206, 27, 40, 1);
+        color: white;
+    } */
+</style>
+
+<center>
+</center>
+<h1 style="text-align: center; padding-right: 80px">Area Wise Crime Report</h1>
+<form action="/viewReport" style = "padding-left: 10%; padding-top: 3%" method="POST">
+
+  <div style="float:right;width:50%">
+
+      Start Date:
+      <input type="text" name="startdate" placeholder="mm-dd-yyyy" style="width:70%" />
+      <br />
+      End Date:
+      <input type="text" name="enddate" placeholder="mm-dd-yyyy" style="width:70%" />
+  </div>
+    <div style="float:right;width:50%">
+
+        Start Time:
+        <input type="text" name="starttime" placeholder="hhmm or hmm" style="width:70%" />
+        <br />
+        End Time:
+        <input type="text" name="endtime" placeholder="hhmm or hmm" style="width:70%" />
+    </div>
+
+
+    <div style="padding-left: 38%; padding-top: 20%">
+        <input type="submit" class="button" value="Submit">
+    </div>
+</form>
+
+
+<br>
+<br>
+{{!-- </center> --}}
+{{#if first}}
+<div class="chart">
+  <canvas id="chart-report" width="300" height="100"></canvas>
+</div>
+
+<script>
+
+   var ctx = document.getElementById('chart-report').getContext('2d');
+
+    var chart = new Chart(ctx, {
+
+      type: 'horizontalBar',
+
+      data: {
+
+        labels: ['77th Street', 'Central', 'Devonshire', 'Foothill', 'Harbor',
+                       'Hollenbeck', 'Hollywood', 'Mission', 'N Hollywood',
+                     'Newton', 'Northeast', 'Olympic', 'Pacific', 'Rampart', 'Southeast', 'Southwest', 'Topanga',
+                     'Van Nuys', 'West LA', 'West Valley', 'Wilshire'],
+        datasets: [
+        {
+        label: "Number of Crimes",
+        fontSize: '40',
+        borderColor: '#ff003f',
+        backgroundColor: 'navy',
+        data: [{{first}}]
+
+      }
+        ]
+      },
+      options:{
+        layout:{
+          padding:10,
+        },
+        legend:{
+          position:'bottom',
+        },
+        title:{
+          display:true,
+          text:'The displayed crimes are from {{startdate}} to {{enddate}} for {{starttime}} to {{endtime}} time of the day',
+          fontSize: 30
+        }
+      }
+    });
+</script>
+{{/if}}
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/browser.min.js"></script>
+<script src="/assets/js/breakpoints.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/main.js"></script>
